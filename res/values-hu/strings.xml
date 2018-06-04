@@ -3,6 +3,6 @@
 <resources>
   <string name="app_name">Rendszerfrissítések</string>
   <string name="title_activity_prepare_to_flash">Betöltés...</string>
-  <string name="dummy_button">Dummy gomb</string>
+  <string name="dummy_button">Dummy-gomb</string>
   <string name="dummy_content">DUMMY\nTARTALOM</string>
 </resources>
