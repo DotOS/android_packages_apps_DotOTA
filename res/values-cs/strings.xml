@@ -3,6 +3,6 @@
 <resources>
   <string name="app_name">Aktualizace systému</string>
   <string name="title_activity_prepare_to_flash">Načítání...</string>
-  <string name="dummy_button">Tlačítko Dummy</string>
-  <string name="dummy_content">DUMMY\nOBSAH</string>
+  <string name="dummy_button">Fiktivní tlačítko</string>
+  <string name="dummy_content">PRÁZDNÝ\ nOBSAH</string>
 </resources>
