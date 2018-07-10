@@ -69,6 +69,7 @@ public class prepareToFlash extends AppCompatActivity {
             public void run() {
                 try {
                     synchronized (this) {
+                        disableUI();
                         wait(5000);
                         runOnUiThread(new Runnable() {
                             @Override
@@ -90,7 +91,8 @@ public class prepareToFlash extends AppCompatActivity {
                                 ObjectToolsAnimator.moveAndAnimate(status, "translationY", 0, 50, 400);
                                 ObjectToolsAnimator.moveAndAnimate(progressBar, "translationY", 0, 50, 400);
                                 status.setTextSize(22);
-                                new recoveryScript(getApplicationContext()).execute();
+                                new recoveryScript(prepareToFlash.this).execute();
+                                enableUI();
                             }
                         });
                     }
@@ -155,14 +157,6 @@ public class prepareToFlash extends AppCompatActivity {
         }
         mHideHandler.removeCallbacks(mShowPart2Runnable);
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
-    }
-
-    @SuppressLint("InlinedApi")
-    private void show() {
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        mHideHandler.removeCallbacks(mHidePart2Runnable);
-        mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
     }
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);

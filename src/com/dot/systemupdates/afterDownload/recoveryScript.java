@@ -29,7 +29,7 @@ public class recoveryScript extends AsyncTask<Void, String, Boolean> implements 
     private String mFilename;
     private String mScriptOutput;
     private String[] serverNodes;
-    private String Url = "https://raw.githubusercontent.com/DotOS/services_apps_ota/dot-o/";
+    private String Url = "https://raw.githubusercontent.com/IacobIonut01/services_apps_ota/dot-o/";
 
     public recoveryScript(Context context) {
         mContext = context;
@@ -37,31 +37,74 @@ public class recoveryScript extends AsyncTask<Void, String, Boolean> implements 
         try {
             xmlParser xmlParser = new xmlParser();
             serverNodes = xmlParser.execute(Url+device+".xml").get();
-            mFilename = serverNodes[0] + ".zip";
+            mFilename = serverNodes[0] + "-" + device + ".zip";
         } catch ( InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
     }
 
     protected void onPreExecute() {
+
         String NEW_LINE = "\n";
+        if (Prefs.getWipeData(mContext)) {
+            mScript.append("wipe data").append(NEW_LINE);
+        }
+        if (Prefs.getWipeCache(mContext)) {
+            mScript.append("wipe cache").append(NEW_LINE);
+        }
+        if (Prefs.getWipeDalvik(mContext)) {
+            mScript.append("wipe dalvik").append(NEW_LINE);
+        }
+
         StringBuilder installRom = new StringBuilder()
-                .append(WIPE_DALVIK)
-                .append(NEW_LINE)
-                .append(WIPE_CACHE)
-                .append(NEW_LINE)
                 .append("install ")
+                .append(Constants.SD_CARD)
                 .append(File.separator)
-                .append(SD_CARD)
-                .append(File.separator)
-                .append("Download")
+                .append(OTA_DOWNLOAD_DIR)
                 .append(File.separator)
                 .append(mFilename)
-                .append(NEW_LINE)
-                .append("reboot ")
                 .append(NEW_LINE);
         mScript.append(installRom);
         if (DEBUGGING) Log.d(TAG,installRom.toString());
+
+        File installAfterFlashDir = new File(Constants.SD_CARD
+                + File.separator
+                + OTA_DOWNLOAD_DIR
+                + File.separator
+                + INSTALL_AFTER_FLASH_DIR);
+
+        File[] filesArr = installAfterFlashDir.listFiles();
+        if(filesArr != null && filesArr.length > 0) {
+            for (File aFilesArr : filesArr) {
+                StringBuilder installAfterFlash = new StringBuilder()
+                        .append(NEW_LINE).append("install ")
+                        .append(Constants.SD_CARD)
+                        .append(File.separator)
+                        .append(OTA_DOWNLOAD_DIR)
+                        .append(File.separator)
+                        .append(INSTALL_AFTER_FLASH_DIR)
+                        .append(File.separator)
+                        .append(aFilesArr.getName());
+                mScript.append(installAfterFlash);
+                if (DEBUGGING)
+                    Log.d(TAG,installAfterFlash.toString());
+            }
+        }
+
+        if (Prefs.getDeleteAfterInstall(mContext)) {
+            mScript.append(NEW_LINE)
+                    .append("cmd rm -rf ")
+                    .append(Constants.SD_CARD)
+                    .append(File.separator)
+                    .append(OTA_DOWNLOAD_DIR)
+                    .append(File.separator)
+                    .append(INSTALL_AFTER_FLASH_DIR)
+                    .append(File.separator)
+                    .append(mFilename)
+                    .append(NEW_LINE);
+        }
+
         mScriptOutput = mScript.toString();
     }
 
@@ -70,14 +113,14 @@ public class recoveryScript extends AsyncTask<Void, String, Boolean> implements 
         boolean orsWrittenToCache = false;
         File orsDir = new File("/cache/recovery");
         File orsFile = new File("/cache/recovery/openrecoveryscript");
-        if (orsDir.exists()){
+        if (!orsDir.exists()){
             try {
                 orsWrittenToCache = orsDir.createNewFile();
                 if (!orsFile.exists()){
                     orsWrittenToCache = orsFile.createNewFile();
                     FileWriter fileWriter = new FileWriter(orsFile);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                    bufferedWriter.write(String.format(mScriptOutput));
+                    bufferedWriter.write(String.format("\" %s \" \n", mScriptOutput));
                     bufferedWriter.flush();
                     bufferedWriter.close();
                 }

@@ -7,158 +7,242 @@
     android:orientation="vertical"
     tools:context="com.dot.systemupdates.baseActivity">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/toolbar_container"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        app:cardBackgroundColor="?attr/colorPrimary"
-        app:cardElevation="2dp">
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/google_sans_bold"
+        android:text="droid on time"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="22sp" />
 
-        <RelativeLayout
+    <TextView
+        android:id="@+id/dotOS_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/textView"
+        android:alpha="0.8"
+        android:fontFamily="@font/google_sans_bold"
+        android:text="version v2.3.1"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dotOS_version"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView"
+        android:layout_marginEnd="32dp"
+        android:padding="2dp"
+        app:srcCompat="@drawable/ic_dot_logo" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/dotOS_version">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/dotOS_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imageView3"
-                android:layout_marginBottom="14dp"
-                android:layout_marginStart="14dp"
-                android:elevation="3dp"
-                android:text="DotOS Version"
-                android:textAlignment="center"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/show_more"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="14dp"
-                android:layout_marginTop="37dp"
-                android:animateLayoutChanges="true"
-                android:background="?android:selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:elevation="3dp"
-                android:tint="?android:attr/colorPrimary"
-                android:src="@drawable/ic_expand_more"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/imageView3"
+            <ProgressBar
+                android:id="@+id/check_prg"
+                style="@style/Widget.AppCompat.ProgressBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/base"
-                tools:ignore="ContentDescription"/>
+                android:progressTint="?android:attr/colorAccent"
+                android:visibility="gone" />
 
-            <com.dot.systemupdates.views.ExpandableLayout
-                android:id="@+id/update_info"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/show_more"
-                android:layout_marginEnd="8dp"
-                android:layout_toLeftOf="@+id/show_more"
-                android:animateLayoutChanges="true"
-                android:elevation="3dp">
+            <LinearLayout
+                android:id="@+id/control_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/dotOS_version"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/up_to_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/google_sans_bold"
+                    android:text="System is up to date"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textSize="16sp" />
 
-                    <include
-                        layout="@layout/updates_preferences"
-                        android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/update_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:elevation="1dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginTop="5dp" />
+                        android:background="@drawable/update_bg"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/update_found"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/google_sans_bold"
+                            android:text="update found"
+                            android:textColor="@android:color/white"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:id="@+id/update_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/update_found"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_toStartOf="@+id/action_button"
+                            android:fontFamily="@font/google_sans_bold"
+                            android:singleLine="true"
+                            android:text="NEW_VERSION"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/size_mb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/update_version"
+                            android:layout_below="@+id/update_version"
+                            android:layout_marginBottom="24dp"
+                            android:alpha="0.6"
+                            android:fontFamily="@font/google_sans_bold"
+                            android:text="SIZE_MB"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/action_button"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="false"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="24dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            app:srcCompat="@drawable/ic_download" />
+
+                    </RelativeLayout>
                 </LinearLayout>
-            </com.dot.systemupdates.views.ExpandableLayout>
 
-            <ImageButton
-                android:id="@+id/go_back"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/show_more"
-                android:layout_marginStart="14dp"
-                android:animateLayoutChanges="true"
-                android:background="?android:selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:tint="?android:attr/colorPrimary"
-                android:src="@drawable/ic_back"
-                tools:ignore="ContentDescription"/>
+                <com.dot.systemupdates.views.ChangelogLayout
+                    android:id="@+id/changelog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone">
 
+                </com.dot.systemupdates.views.ChangelogLayout>
 
-        </RelativeLayout>
+            </LinearLayout>
 
-    </android.support.v7.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/scroll_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/check_updates"
-        android:layout_below="@+id/toolbar_container"
-        android:layout_marginBottom="14dp"
-        android:elevation="1dp"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/update_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:text="NEW_VERSION"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/size_mb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/update_version"
-                android:layout_below="@+id/update_version"
-                android:text="SIZE_MB"
-                android:textAllCaps="false"
-                android:textStyle="bold" />
-
-            <ScrollView
+            <LinearLayout
+                android:id="@+id/info_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/size_mb"
-                android:padding="6dp">
+                android:layout_height="match_parent"
+                android:layout_below="@+id/control_layout"
+                android:layout_margin="12dp"
+                android:background="@drawable/outline_bg"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/new_changes"
-                        android:layout_width="match_parent"
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:text="UPDATE_CHANGELOG" />
+                        android:fontFamily="@font/google_sans_bold"
+                        android:text="Quick Info"
+                        android:textColor="?android:attr/colorAccent"
+                        android:textSize="15sp" />
+
+                    <ImageButton
+                        android:id="@+id/expand_info"
+                        android:layout_width="32dp"
+                        android:layout_height="22dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="3dp"
+                        android:scaleType="fitCenter"
+                        android:tint="?android:attr/colorAccent"
+                        app:srcCompat="@drawable/ic_expand_less" />
                 </LinearLayout>
-            </ScrollView>
-        </RelativeLayout>
-    </LinearLayout>
+
+                <com.dot.systemupdates.views.ExpandableLayout
+                    android:id="@+id/expandable_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:exl_expanded="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/google_sans"
+                            android:text="Before to install any update, be sure you have done a backup with your important data. To avoid unexpected results after update installation perform a factory reset."
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/google_sans_bold"
+                            android:text="Reporting bugs"
+                            android:textColor="?android:attr/colorAccent"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/google_sans"
+                            android:text="Device releated bugs have to be reported to your device maintainer, list of the current mantainers for each device it's visible in Settings > System > About Phone > About Us > Official maintainers, other type of bugs can be reported on dotOS Community from Telegram."
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </com.dot.systemupdates.views.ExpandableLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/check_updates"
@@ -166,41 +250,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp"
-        android:layout_marginEnd="14dp"
         android:clickable="true"
         android:src="@drawable/ic_refresh"
+        android:tint="?android:attr/colorAccent"
+        app:backgroundTint="?attr/colorPrimary"
         app:fabSize="normal" />
 
-    <RelativeLayout
-        android:id="@+id/no_updates"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        android:id="@+id/go_back"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginStart="-32dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="3dp">
 
-        <TextView
-            android:id="@+id/up_to_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginEnd="12dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="298dp"
-            android:text="Your System is up to date"
-            android:textAlignment="center"
-            android:textSize="16sp" />
+            android:layout_marginStart="32dp"
+            android:gravity="end"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/v_changelog"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/up_to_date"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="7dp"
-            android:text="View Changelog" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/google_sans_bold"
+                android:gravity="center_vertical"
+                android:text="Go back"
+                android:textColor="?android:attr/colorAccent"
+                android:textSize="16sp" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="2dp"
+                android:tint="?android:attr/colorAccent"
+                app:srcCompat="@drawable/ic_back" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

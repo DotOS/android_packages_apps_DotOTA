@@ -17,6 +17,14 @@ public class Prefs implements Constants {
         return getPrefs(context).getBoolean(IS_DOWNLOAD_FINISHED, false);
     }
 
+    public static boolean getDeleteAfterInstall(Context context) {
+        return getPrefs(context).getBoolean(DELETE_AFTER_INSTALL, false);
+    }
+
+    public static boolean getWipeData(Context context) {
+        return getPrefs(context).getBoolean(WIPE_DATA, false);
+    }
+
     public static boolean getWipeCache(Context context) {
         return getPrefs(context).getBoolean(WIPE_CACHE, false);
     }
@@ -40,6 +48,18 @@ public class Prefs implements Constants {
     public static void setTheme(Context context, String value) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(CURRENT_THEME, value);
+        editor.apply();
+    }
+
+    public static void setDeleteAfterInstall(Context context, boolean value) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(DELETE_AFTER_INSTALL, value);
+        editor.apply();
+    }
+
+    public static void setWipeData(Context context, boolean value) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(WIPE_DATA, value);
         editor.apply();
     }
 
