@@ -52,7 +52,7 @@ import static com.dot.systemupdates.utils.Tools.isNetworkAvailable;
 import static java.lang.Thread.sleep;
 
 public class baseActivity extends AppCompatActivity {
-    String Url = "https://raw.githubusercontent.com/DotOS/services_apps_ota/dot-o-mr2/";
+    String Url = "https://raw.githubusercontent.com/DotOS/ota/dot-o/";
     String[] serverNodes;
     DownloadManager downloadManager;
     String changelog;
@@ -290,11 +290,8 @@ public class baseActivity extends AppCompatActivity {
         final TextView dot_version = findViewById(R.id.dotOS_version);
         final TextView up_to_date = findViewById(R.id.up_to_date);
         final FloatingActionButton check_updates = findViewById(R.id.check_updates);
-        String official = SystemProperties.get("ro.dot.releasetype");
-        if (Objects.equals(official, "OFFICIAL")) {
-            isOff = true;
-        }
-        if (official != null && official.contains("Preview_")) {
+        String Official = SystemProperties.get("ro.dot.releasetype");
+        if (Objects.equals(Official, "OFFICIAL")) {
             isOff = true;
         }
         if (SystemProperties.get("ro.dotOS.device").isEmpty()) {
