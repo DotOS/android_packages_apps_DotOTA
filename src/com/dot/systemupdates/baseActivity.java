@@ -207,7 +207,7 @@ public class baseActivity extends AppCompatActivity {
                     if (serverNodes[5] != null)
                     updateChangelog.setSettings(serverNodes[5]);
                     if (serverNodes[6] != null)
-                    updateChangelog.setLauncher(serverNodes[6]);
+                    updateChangelog.setDevice(serverNodes[6]);
                     if (serverNodes[7] != null)
                     updateChangelog.setSecurityPatch(serverNodes[7]);
                     if (serverNodes[8] != null)
@@ -307,9 +307,6 @@ public class baseActivity extends AppCompatActivity {
             check_updates.setVisibility(View.VISIBLE);
             up_to_date.setText("System is up to date");
             dot_version.setText("version " + SystemProperties.get("ro.modversion"));
-        } else {
-            dot_version.setText("version " + SystemProperties.get("ro.modversion"));
-            up_to_date.setText("Unofficial build not supported");
         }
         /*new Thread(new Runnable() {
             public void run() {

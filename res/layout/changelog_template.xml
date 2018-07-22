@@ -45,22 +45,22 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/c_launcher"
+        android:id="@+id/c_device"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/google_sans_bold"
-        android:text="Launcher"
+        android:text="Device"
         android:textColor="?android:attr/colorAccent"
         android:textSize="20sp"
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/d_launcher"
+        android:id="@+id/d_device"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/google_sans"
-        android:text="• Template of Launcher Changelog"
+        android:text="• Template of Device Changelog"
         android:textSize="15sp"
         android:visibility="gone" />
 

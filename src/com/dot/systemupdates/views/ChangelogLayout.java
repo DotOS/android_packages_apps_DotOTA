@@ -14,7 +14,7 @@ public class ChangelogLayout extends LinearLayout {
     View view;
     TextView c_system, d_system,
             c_settings, d_settings,
-            c_launcher, d_launcher,
+            c_device, d_device,
             c_sec_patch , d_sec_patch,
             c_misc, d_misc;
 
@@ -34,8 +34,8 @@ public class ChangelogLayout extends LinearLayout {
         d_system = findViewById(R.id.d_system);
         c_settings = findViewById(R.id.c_settings);
         d_settings = findViewById(R.id.d_settings);
-        c_launcher = findViewById(R.id.c_launcher);
-        d_launcher = findViewById(R.id.d_launcher);
+        c_device = findViewById(R.id.c_device);
+        d_device = findViewById(R.id.d_device);
         c_sec_patch = findViewById(R.id.c_sec_patch);
         d_sec_patch = findViewById(R.id.d_sec_patch);
         c_misc = findViewById(R.id.c_misc);
@@ -58,12 +58,12 @@ public class ChangelogLayout extends LinearLayout {
         d_settings.setText(str);
     }
 
-    public void setLauncher(String str) {
-        if (c_launcher.getVisibility() != VISIBLE && d_launcher.getVisibility() != VISIBLE && str != null) {
-            c_launcher.setVisibility(VISIBLE);
-            d_launcher.setVisibility(VISIBLE);
+    public void setDevice(String str) {
+        if (c_device.getVisibility() != VISIBLE && d_device.getVisibility() != VISIBLE && str != null) {
+            c_device.setVisibility(VISIBLE);
+            d_device.setVisibility(VISIBLE);
         }
-        d_launcher.setText(str);
+        d_device.setText(str);
     }
 
     public void setSecurityPatch(String str) {

@@ -51,8 +51,8 @@ public class xmlParser extends AsyncTask<String, Integer, String[]> {
                     Node systemNode;
                     Node settings = element2.getElementsByTagName("Settings").item(0);
                     Node settingsNode;
-                    Node launcher = element2.getElementsByTagName("Launcher").item(0);
-                    Node launcherNode;
+                    Node device = element2.getElementsByTagName("Device").item(0);
+                    Node deviceNode;
                     Node sec_patch = element2.getElementsByTagName("SecurityPatch").item(0);
                     Node sec_patchNode;
                     Node misc = element2.getElementsByTagName("Misc").item(0);
@@ -69,9 +69,9 @@ public class xmlParser extends AsyncTask<String, Integer, String[]> {
                     } else {
                         xmlValues[5] = null;
                     }
-                    if (launcher != null) {
-                        launcherNode = launcher.getChildNodes().item(0);
-                        xmlValues[6] = launcherNode.getNodeValue();
+                    if (device != null) {
+                        deviceNode = device.getChildNodes().item(0);
+                        xmlValues[6] = deviceNode.getNodeValue();
                     } else {
                         xmlValues[6] = null;
                     }
