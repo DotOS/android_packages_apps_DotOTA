@@ -278,7 +278,7 @@ public class baseActivity extends AppCompatActivity {
                     updateChangelog.setVisibility(View.GONE);
                 }
             } else {
-                no_updates.setText("System is up to date - Device not official");
+                no_updates.setText("System is up to date - Device Unofficial");
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();

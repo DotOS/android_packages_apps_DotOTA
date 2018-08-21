@@ -41,7 +41,7 @@ public class updaterService extends JobService {
                 NotificationCompat.Builder notification =
                         new NotificationCompat.Builder(this,CHANNEL_ID)
                                 .setSmallIcon(R.drawable.ic_dot)
-                                .setContentTitle("System Update Available")
+                                .setContentTitle("System Update Available!")
                                 .setContentText("New version of dotOS is available for " + SystemProperties.get("ro.dotOS.device"));
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
