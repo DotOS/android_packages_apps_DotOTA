@@ -3,6 +3,6 @@
 <resources>
   <string name="app_name">系统更新</string>
   <string name="title_activity_prepare_to_flash">正在加载...</string>
-  <string name="dummy_button">虚拟按钮</string>
+  <string name="dummy_button">屏幕按钮</string>
   <string name="dummy_content">虚拟\n内容</string>
 </resources>
