@@ -4,5 +4,5 @@
   <string name="app_name">Обновления прошивки</string>
   <string name="title_activity_prepare_to_flash">Загрузка...</string>
   <string name="dummy_button">Фиктивная кнопка</string>
-  <string name="dummy_content">DUMMY\nCONTENT</string>
+  <string name="dummy_content">Пусто\n</string>
 </resources>
